@@ -6,12 +6,12 @@ import scipy.io as sio # 重新安装该库
 import random
 import os
 from lshash import LSHash
-DB_INFO = {'host':'127.0.0.1','port':3306,'DB':'YJ_TEST','TB':'centroid'}
+DB_INFO = {'host':'127.0.0.1','port':3306,'DB':'YJ_TEST','TB':'test_new'}
 folder = 'F:/Study/510/DocYJ/DataBase/'
-mat_file = 'centroidtensor.mat'
+mat_file = 'tensor_new.mat'
 binary_file = 'functionname/binaryname_new.txt'
-result_file = 'centroidresult.txt'
-select_result_folder = 'centroidresult/'
+result_file = 'result.txt'
+select_result_folder = 'result/'
 
 # 数据库操作类
 class DB_Actor():
@@ -19,7 +19,7 @@ class DB_Actor():
     def __init__(self):
         global DB_INFO
         self.conn = pymysql.Connect(host=DB_INFO['host'], port=DB_INFO['port'],\
-                               user='root', passwd='jiang', db=DB_INFO['DB'], charset='utf8')
+                               user='root', passwd='yangjia', db=DB_INFO['DB'], charset='utf8')
         self.cursor = self.conn.cursor()
         self.CreateTB(DB_INFO['TB'])
 
