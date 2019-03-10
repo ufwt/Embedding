@@ -1,7 +1,12 @@
 # Search function
 
-## search(1).py provide the entire program search test.
+## test_end.py function database for codee.
+安装sql，创建数据库
 
-## db.py provides creat a database to search (this code are not from author)
+## test_END_BETWEEN.py 用于测试两两binary file之间的函数相似度
 
-## lsh.py provide a single function search.
+
+## test_end_dblimit.py 用于测试k和roc，针对单个函数，会保存所有的搜索结果。
+
+
+## submatching.py 用于计算roc。
