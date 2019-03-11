@@ -5,3 +5,5 @@
 3. Extract att.mat, Wei.mat from Node,Edge,Adj, mainly run listiimat.py and nodemat.py , change the path of step 2. 
 
 att.mat and Wei.mat are used for function embedding.
+  
+ 在基本代码块的提取过程中加入了SSE指令。
