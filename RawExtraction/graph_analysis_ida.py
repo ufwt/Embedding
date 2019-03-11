@@ -87,26 +87,35 @@ def getcodesquence(bl):
 	#x86_AI = {'add':1, 'sub':1, 'div':1, 'imul':1, 'idiv':1, 'mul':1, 'shl':1, 'dec':1, 'inc':1}
 	#mips_AI = {'add':1, 'addu':1, 'addi':1, 'addiu':1, 'mult':1, 'multu':1, 'div':1, 'divu':1}
 	#x86_TI = {'jmp': 1, 'jz': 1, 'jnz': 1, 'js': 1, 'je': 1, 'jne': 1, 'jg': 1, 'jle': 1, 'jge': 1, 'ja': 1, 'jnc': 1,
-			  'call': 1}
+			#  'call': 1}
 	#mips_TI = {'beq': 1, 'bne': 1, 'bgtz': 1, "bltz": 1, "bgez": 1, "blez": 1, 'j': 1, 'jal': 1, 'jr': 1, 'jalr': 1}
 	#arm_TI = {'MVN': 1, "MOV": 1}
 	# in each opcode, there are three lines, one is the arm, one is the x86, and the other is mips.
 	GDTI={'MVN':1, "MOV":1,'LDR':2,'LDRB':2,'LDRH':2,'STR':3,'STRB':3,'STRH':3,'LDM':2,'STM':3,'SWP':3,'SWPB':3,
-		  'mov':1,'movsx':1,'movzx':1,'push':4,'pop':5,'push':4,'pusha':4,'pope':5,'pushed':4,'popad':5,'bswap':3,'xlat':7,'mvn':1,'popf':5,'pushd':4,'popd':5，'movs':1,'lods':2,'stos':3,
+		  'mov':1,'movsx':1,'movzx':1,'push':4,'pop':5,'push':4,'pusha':4,'pope':5,'pushed':4,'popad':5,'bswap':3,'xlat':7,'mvn':1,'popf':5,'pushd':4,'popd':5，'movs':1,'lods':2,'stos':3, 'movss':1,'movsd':1,'movaps':8, 'movapd':8,'movups':9,'movupd':9,
+'movlps':10, 'movlpd':10	,'movhps':11, 'movhpd':11, 'movlhps':12	,'movhlps':13,	'mosldup':14	,'movshdup':15,'movddup':16 'movmskps':17, 'movmskpd':17,'shufps':18, 'shufpd':18,'movdqa':12	,'movdpu':13,	'movq2dq':14	,'movdq2q':15,	
+'unpcklps':19, 'unpcklpd':19,	
+'unpckhps':20, 'unpckhpd':20,
 		  'lui':1,'lw':1,'sw':3}
 	IOPTI={'in':1,'out':2,}
 	DATI={'lea':1,'lds':1,'les':1,'lfs':1,'lgs':1}
 	FTI={'lahf':1,'sahf':2,}
-	ADO={'add':1,'adc':1,'inc':2,'aaa':3,'daa':3,'sub':4,'sbb':4,'dec':5,'nec':5,'xadd':1,'tst':6,'tea':6,'cmp':7,'xchg':7,'cmps':7, 'cmpxchg':7,
+	ADO={'add':1,'adc':1,'inc':2,'aaa':3,'daa':3,'sub':4,'sbb':4,'dec':5,'nec':5,'xadd':1,'tst':6,'tea':6,'cmp':7,'xchg':7,'cmps':7, 'cmpxchg':7, 'addps':1,'subps':4,'mulps':8,'divps':11,'addss':1,'addsd':1,'subss':4,'subsd':4,'mulss':8,'mulsd':8,'divss':9'divss': 9, 'divsd':9,'sqrtss':10,'sqrtsd':10,'maxss':11,'maxsd':11,'minss':12,'minsd':12,'roundss':13,'roundsd':13,'rcpss':14,'rsqrt':15, 'cmpss':7,'smpsd':7,'comiss':16,'comisd':16,'ucomiss':17,'ucomisd':17,'addps':1,'addpd':1,'subps':4,'subpd':4,'mulps':8,'mulpd':8,'divps':9'divps': 9, 'divpd':9,'sqrtps':10,'sqrtpd':10,'maxps':11,'maxpd':11,'minps':12,'minpd':12,'roundps':13,'roundpd':13,'rcpps':14,'rsqrtps':15,'addsubps':18, 'addsubpd':18,	'pmulld':8,'pmuldq':8,'pmaxub':19,'pmaxuw':19,'pmaxud':19,'pminsb':12,'pminsd':12,'pminsw':12,'pminub':20,'pminud':20,'pminuw':20,',pmaxsb':11,'pmaxsw':11,'pmaxsd':11,
+'dpps':21, 'dppd':21,	
+'roundps':13, 'roundpd':13,	
+'haddps':22, 'haddpd':22,	
+'hsubpd':23, 'hsubpd':23,'cmpps':7,'pcmpeqd':7,'pcmpeqw':7,'pcmpeqb':7,'pcmpeqq':7,'pcmpgtb':7,'pcmpgtw':7,'pcmpgtd':7,'pcmpgtq':7,'cmppd':7,
 		 'ADD':1, 'ADC':1,'SUB':4,'C':4,'R':5,'RSC':5,'TEQ':6,'TST':6,'CMP':7,'MUL':8,'MLA':8,'SMULL':8,'SMLAL':8,'UMULL':8,'UMLAL':8,
-		 'aas':3,'das':3,'mul':8,'imul':8,'aam':3,'div':4,'idiv':4,'aad':1,'cbw':9,
-		 'cwd':9,'cwde':9,'cdq':9,'c':9,'r':10,'rsc':10,'mla':8,'smull':8,'umull':8,'umlal':8,
-		 'add':1,'addu':1,'sub':4,'subu':4,'addi':1,'addiu':1}
-	LDO={'and':1,'or':2,'xor':2,'not':3,'test':5,'shl':6,'sal':6,'shr':6,'sar':6,'rol':7,'ror':7,'rcl':7,'rcr':7,
-		 'orr':7,'eor':7,'bic':8,
+		 'aas':3,'das':3,'mul':8,'imul':8,'aam':3,'div':9,'idiv':9,'aad':1, 'add':1,'addu':1,'sub':4,'subu':4,'addi':1,'addiu':1}
+	LDO={'and':1,'or':2,'xor':3,'not':4,'test':5,'shl':6,'sal':6,'shr':6,'sar':6,'rol':7,'ror':7,'rcl':7,'rcr':7,
+		 'orr':7,'eor':7,'bic':8,'cwd':9,'cwde':9,'cdq':9,'cbw':9, 'cvtsi2ss':10 'cvrsi2sd':10,'cvtss2si':11,'cvtsd2si':11,'cvttss2si':12,'cvttsd2si':12,'cvtss2sd':13,'cvtsd2ss':,'cvtpi2ps':10 'cvpi2pd':10,'cvtps2pi':11,'cvtpd2pi':11,'cvttps2pi':12,'cvttpd2pi':12,'cvtps2pd':13,'cvtpd2ps':14,'andps':1, 'andpd':1,	'andnps':15, 'andnpd':15,'orps':2,'orpd':2,	
+'xorps':3,	'xorpd':3,'pslldq':6,'psrldq':6,
 		 'and':1,'or':2,'xor':2,'nor':2,'andi':3,'ori':2,'xori':2,
 		 'AND':1,'ORR':2,'EOR':2,'BIC':8,'LSL':3,'LSR':3,}
-	SI={'scas':1,'rep':2,'repe':2,'repen':2,'repc':2,'repnc':2}
+	SI={'scas':1,'rep':2,'repe':2,'repen':2,'repc':2,'repnc':2,'pcmpestri':3,	
+'pcmpestrm':3,	
+'pcmpistri':4,	
+'pcmpistrm':4}
 	UBI={'jump':1,'call':2,'ret':2,
 		 'j':1,'jal':1,'jr':1}
 	CBI={'ja':1,'jnz':1,'jnbe':2,'jae':2,'jnb':2,'jb':3,'jbe':3,'jg':4,'jge':4,'jl':5,'jle':5,'je':1,'jne':2,'jc':6,'jnc':6,'jno':6,'jnp':6,'jns':6,'jo':7,'jp':7,'js':7,
@@ -116,7 +125,8 @@ def getcodesquence(bl):
 	LCI={'loop':1,'loope':1,'loopne':1,'jcxz':2,'jecxz':2}
 	II={'int':1,'into':1,'iret':2,
 		'SWI':1,'BKPT':2,}
-	PCI={'hlt':1,'wait':2,'esc':3,'lock':4,'nop':5,'stc':6,'clc':7,'cmc':7,'std':8,'cld':7,'sti':8,'cli':7,
+	PCI={'hlt':1,'wait':2,'esc':3,'lock':4,'nop':5,'stc':6,'clc':7,'cmc':7,'std':8,'cld':7,'sti':8,'cli':7,'ldmxcsr':9,	
+'stmxcsr':10,	'fxsave':11,	'fxrstor':12,	'crc32':13,
 		 'CDP':1,'LDC':2,'STC':3,'MCR':4,'MRC':4,'MRS':4,'MSR':4}
 	PI={'dw':1,'proc':2,'ends':3,'segment':4,'assume':5,'end':3,
 		'GBLA':1,'GBLL':1,'GBLS':1,'LCLA':2,'LCLL':2,'LCLS':2,'SETA':3,'SETL':3,'SETS':3,'RLIST':4,'DCB':5,'DCW':5,'DCD':5,'DCFD':5,
