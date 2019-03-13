@@ -225,7 +225,7 @@ def processpltSegs():
 		seg = idaapi.getnseg(n)
 		ea = seg.startEA
 		segname = SegName(ea)
-		if segname in ['.plt', 'extern', '.MIPS.stubs']:
+		if segname in ['.plt', '.text', extern', '.MIPS.stubs']:
 			start = seg.startEA
 			end = seg.endEA
 			cur = start
