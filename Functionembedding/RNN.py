@@ -59,7 +59,7 @@ for file in files:
         print(CombG.shape)
         print(CombA.shape)
         start_time = time.time()
-        FE = FEfun(CombG, CombA, d, lambd, rho)
+        FE = FEfunn(CombG, CombA, d, lambd, rho)
         print(FE)
         print("time elapsed: {:.2f}s".format(time.time() - start_time))
 
