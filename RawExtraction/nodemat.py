@@ -7,11 +7,18 @@ import json
 path='node/'
 files= os.listdir(path)
 s = []
+fmax=0
+fmin=0
 for file in files:
     if not os.path.isdir(file):
         f = open(path+file)
         tt=f.readlines()
         fline=len(tt)
+
+        #if fline>50:
+        #    fmax=fmax+1
+        #else:
+        #    fmin=fmin+1
         #print(fline)
         a=int(fline)
         ii=0  
@@ -24,7 +31,7 @@ for file in files:
             for line in tt[1:fline]:
 
 
-                print ii
+                #print ii
                 #print line
                 edge=[]
                 #res=json.dumps(line)
@@ -37,9 +44,17 @@ for file in files:
                 #tempconnectnode = line.strip('\n').strip('}').strip(']').split(',')
                 #print(tempconnectnode)
                 tempconnectnode_len=len(dict['v'])
-                aaa=dict['v'][2:int(tempconnectnode_len)]
+                #aaa=
+
+                aaa=dict['v'][0:int(tempconnectnode_len)]
+                aaa[0] = len(dict['v'][0])
+                aaa[1] = len(dict['v'][1])
                 aaalen=len(aaa)
-               # print aaa
+                #print aaa
+                if aaa[5]>30:
+                    fmax=fmax+1
+                else:
+                    fmin=fmin+1
                 if tempconnectnode_len>1:
                     for tempite in range(6):
                      #   print(tempconnectnode[int(tempite)+1])
@@ -64,12 +79,10 @@ for file in files:
 
         #j=j+1
             scipy.io.savemat('att/'+str(file)+'.mat', mdict={'network': network})
-           # import mat4py
-           # sssssssssssssss=mat4py.loadmat('att/'+'nodeopenssl1.txt'+'.mat')
-          #  ssssss=sssssssssssssss['network']
+
             #print ssssss
-
-
+print fmax
+print fmin
 
 
 
