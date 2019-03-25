@@ -15,7 +15,7 @@ for file in files:
         a=int(fline)
         network=numpy.zeros((a-1,a-1))
         j=tt[0].split(':')[0]
-        if a>2:
+        if a>0:
             i=0
             for line in tt[1:fline]:
                 #print(line)
