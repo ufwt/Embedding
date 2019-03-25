@@ -26,7 +26,7 @@ for file in files:
         network=np.zeros([a-1,60])
         #print network
         j=tt[0].split(':')[0]
-        if a>2:
+        if a>0:
             #print(file)
             for line in tt[1:fline]:
 
