@@ -22,6 +22,7 @@ def justify_fla(matrix):
 		flagone=1
 	if flagmax==1 and flagone==1:
 		isfla=True
+	return isfla
 
 def find_specialnode(matrix,block_feature):
 	rr={}
@@ -80,7 +81,8 @@ for file in files:
         A_name = 'node' + G_name[4:]
         AA = sio.loadmat('attt/' + A_name)
         A = AA["network"]
-        Anew=find_specialnode(G,A)
+	if justify_fla(G):
+		Anew=find_specialnode(G,A)
 		#print file
         #print Anew
 	#j=0
