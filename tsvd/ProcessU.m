@@ -7,8 +7,8 @@ filenamem={list1.name};
 sizefile=size(filenamem);
 lenn=sizefile(2);
 programnumber=108; %number of program
-item=150; % max embedding number
-number=4344; %number of functions
+item=200; % max embedding number
+number=2000; %number of functions
 M=zeros(item,programnumber,number);
 X=double(M);
 for i=3:lenn
@@ -43,7 +43,19 @@ for i=3:lenn
 end
 % %X(:,1,1000)
 % %X(:,61,1)
-kcompress=15;%compress feature
+for kk=1:programnumber
+    Xtemp=X(:,kk,:);
+    %mtemp=mean(Xtemp)
+    Xtempmean=Xtempmean+mean(Xtemp(:));
+end
+Xtempmean=double(Xtempmean)/3.0
+for kk=1:programnumber
+    Xtemp=X(:,kk,:);
+    Xtemp(find(Xtemp==0))=Xtempmean;
+    X(:,kk,:)=Xtemp;
+end
+
+kcompress=20;%compress feature
 %disp(X);
 % M=ones(6,8,5);
 % X=double(M);
@@ -102,16 +114,16 @@ Up=permute(Ucompress,[2,1,3]);
 %     Umat((kkkk-1)*kcompress+1:(kkkk)*kcompress,(kkkk-1)*item+1:(kkkk)*item)=Up(:,:,kkkk);
 %     Xmat((kkkk-1)*item+1:(kkkk)*item,:)=X(:,:,kkkk);
 % end
-for kkk=1:number
-    FFE(:,:,kkk)=abs(Up(:,:,kkk)*X(:,:,kkk));
-end
-toc;
-disp(num2str(toc))
+%for kkk=1:number
+%    FFE(:,:,kkk)=abs(Up(:,:,kkk)*X(:,:,kkk));
+%end
+%toc;
+%disp(num2str(toc))
 % FFEmat=Umat*Xmat;
 % for kkk=1:number
 %     FFE(:,:,kkk)=FFEmat((kkkk-1)*kcompress+1:(kkkk)*kcompress,:);
 % end
-%CC=tproduct(permute(Ucompress,[2,1,3]),X);
+FFE=tproduct(Up,X);
 %CCC=tproduct(permute(Vcompress,[2,1,3]),X1);
 %diffvec=sqrt(sum((CC(:,1,1)-CC(:,2,1)).^2));
 %FFE=abs(FFE)
