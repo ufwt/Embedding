@@ -122,7 +122,7 @@ def getcodesquence(bl):
 	PI={'dw':1,'proc':2,'ends':3,'segment':4,'assume':5,'end':3,
 		'GBLA':1,'GBLL':1,'GBLS':1,'LCLA':2,'LCLL':2,'LCLS':2,'SETA':3,'SETL':3,'SETS':3,'RLIST':4,'DCB':5,'DCW':5,'DCD':5,'DCFD':5,
 		'DCFS':5,'DCQ':5,'SPACE':6,'MAP':7,'FILED':8}
-	opcodenum=0
+	
 	#blocks=[(v.startEA, v.endEA) for v in FlowChart(func)]
 
 	start = bl[0]
@@ -130,7 +130,7 @@ def getcodesquence(bl):
 
 	inst_addr = start
 	while inst_addr < end:
-
+		opcodenum=0
 		opcode = GetMnem(inst_addr)
 
 		if opcode in GDTI:
